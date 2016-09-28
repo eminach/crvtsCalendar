@@ -1,0 +1,52 @@
+﻿@model IEnumerable<crvtsCalendar.Models.Appointment>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string[] monthNames = ViewBag.MonthCollection;
+}
+<h2></h2>
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+    @for (int i = 1; i <= 12; i++)
+    {
+        @Html.ActionLink(@monthNames[i - 1], "Details", new { id = i }, new { @class = "btn btn-default" })
+
+    }
+</div>
+<div>
+    <h4>Appointments</h4>
+    <h3>@ViewBag.NotFountMessage</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 appointmentblock">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6">
+                    @Html.DisplayFor(modelItem => item.Date)
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink(item.Description, "AppointDetailsParital", item.ID, new { @class = "AppointDetailsParital", data_id=item.ID})
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <div id="appDetails">
+
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Create new", "Create")
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.AppointDetailsParital').on('click', function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            $.get('@Url.Action("AppointDetailsParital")', { id: id }, function (result) {
+                $('#appDetails').html(result);
+            });
+        });
+    });
+</script>

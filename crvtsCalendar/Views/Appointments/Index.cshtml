@@ -1,0 +1,19 @@
+﻿@model IEnumerable<crvtsCalendar.Models.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string[] monthNames=ViewBag.MonthCollection;
+}
+
+<h2>Calendar</h2>
+<p>Please select month to get apointments. Or @Html.ActionLink("Create new", "Create")</p>
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+    @for (int i = 1; i <= 12; i++)
+    {
+        @Html.ActionLink(@monthNames[i - 1], "Details", new { id = i }, new { @class = "btn btn-default" })
+
+    }
+</div>
+
+

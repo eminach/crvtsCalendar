@@ -1,0 +1,27 @@
+﻿@model crvtsCalendar.Models.Appointment
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "";
+}
+<div class="row appointmentblock">
+
+    <div class="col-md-6">
+        <label>Description:</label>
+        @Html.DisplayFor(modelItem => modelItem.Description)
+    </div>
+    <div class="col-md-6">
+        <label>Date:</label>
+        @Html.DisplayFor(modelItem => modelItem.Date)
+    </div>
+    <div class="col-md-6">
+        <label>Organizer:</label>
+        @Html.DisplayFor(modelItem => modelItem.Organizer)
+    </div>
+    <div class="col-md-6">
+        <label>Attendees:</label>
+        @Html.DisplayFor(modelItem => modelItem.Attendees)
+    </div>
+
+</div>
+
